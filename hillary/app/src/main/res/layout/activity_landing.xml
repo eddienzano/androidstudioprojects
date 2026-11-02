@@ -1,0 +1,129 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- HEADER -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SupplyBridge"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#111827"
+            android:letterSpacing="0.03"
+            android:fontFamily="sans-serif-medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose your workspace"
+            android:textSize="14sp"
+            android:textColor="#6B7280"
+            android:layout_marginTop="6dp"/>
+
+        <!-- spacing -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="28dp"/>
+
+        <!-- MARKETPLACE -->
+        <LinearLayout
+            android:id="@+id/btnMarketplace"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:background="@drawable/card_marketplace"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:elevation="10dp">
+
+            <TextView
+                android:text="🛒 Marketplace"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Browse, order and track products in real-time"
+                android:textColor="#E5E7EB"
+                android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"/>
+
+        </LinearLayout>
+
+        <View android:layout_height="16dp" android:layout_width="match_parent"/>
+
+        <!-- SUPPLIER -->
+        <LinearLayout
+            android:id="@+id/btnSupplier"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:background="@drawable/card_supplier"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:elevation="10dp">
+
+            <TextView
+                android:text="🏭 Supplier Hub"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Manage inventory, fulfill demand and grow sales"
+                android:textColor="#E5E7EB"
+                android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"/>
+        </LinearLayout>
+
+        <View android:layout_height="16dp" android:layout_width="match_parent"/>
+
+        <!-- TRANSPORTER -->
+        <LinearLayout
+            android:id="@+id/btnTransporter"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:background="@drawable/card_transporter"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:elevation="10dp">
+
+            <TextView
+                android:text="🚚 Transporter"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"/>
+
+            <TextView
+                android:text="Deliver orders, optimize routes, earn payouts"
+                android:textColor="#E5E7EB"
+                android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

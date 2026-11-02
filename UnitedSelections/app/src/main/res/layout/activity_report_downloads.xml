@@ -1,0 +1,315 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <!-- =========================
+             GLASS HEADER
+        ========================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/glass_header"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reports Center"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Analytics • Monitoring • Exports"
+                android:textColor="#CCFFFFFF"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+        <!-- =========================
+             FILTER CARD
+        ========================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            android:background="@drawable/glass_card"
+            android:padding="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_calendar"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Reporting Period"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"/>
+            </LinearLayout>
+
+            <!-- FROM DATE -->
+            <EditText
+                android:id="@+id/fromDate"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/glass_input"
+                android:focusable="false"
+                android:gravity="center_vertical"
+                android:hint="From Date"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCFFFFFF"/>
+
+            <!-- TO DATE -->
+            <EditText
+                android:id="@+id/toDate"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/glass_input"
+                android:focusable="false"
+                android:gravity="center_vertical"
+                android:hint="To Date"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCFFFFFF"/>
+
+        </LinearLayout>
+
+        <!-- =========================
+             SECTION TITLE
+        ========================== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available Reports"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- =========================
+             ROW 1
+        ========================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- FIELD REPORT -->
+            <LinearLayout
+                android:id="@+id/cardField"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_qr"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Field Report"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+            <!-- INTAKE REPORT -->
+            <LinearLayout
+                android:id="@+id/cardIntake"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_flower"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Intake Report"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- =========================
+             ROW 2
+        ========================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <!-- VARIANCE -->
+            <LinearLayout
+                android:id="@+id/cardVariance"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_analysis"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Variance"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+            <!-- ISSUANCE -->
+            <LinearLayout
+                android:id="@+id/cardIssuance"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_exit"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Issuance"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- =========================
+             ROW 3
+        ========================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <!-- STOCK FLOW -->
+            <LinearLayout
+                android:id="@+id/cardStockFlow"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_report"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Stock Flow"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+            <!-- GREENHOUSE -->
+            <LinearLayout
+                android:id="@+id/cardGreenhouse"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_greenhouse"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Greenhouse"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- =========================
+             ROW 4
+        ========================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <!-- SCANOUT -->
+            <LinearLayout
+                android:id="@+id/cardScanoutSummary"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_download"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Scanout Summary"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+            <!-- SCANOUT -->
+            <LinearLayout
+                android:id="@+id/cardDiscard"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_download"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Discard Report"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <!-- FOOT SPACE -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

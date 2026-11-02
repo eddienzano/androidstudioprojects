@@ -1,0 +1,154 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- TITLE -->
+        <TextView
+            android:text="Field Scan"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- SCAN -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnScanQR"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="SCAN QR CODE"
+            android:layout_marginTop="16dp"
+            app:icon="@drawable/ic_qr"
+            android:backgroundTint="?attr/colorPrimary"/>
+
+        <!-- QR -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="QR Result"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/qrInput"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- VARIETY -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="Select Variety"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/variety"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- GREENHOUSE -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="Greenhouse"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/greenhouse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- LENGTH -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="Length"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/length"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- QUANTITY -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="Quantity"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/qty"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ADD VARIETY -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddVariety"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="➕ Add Variety"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="?attr/colorSecondary"/>
+
+        <!-- LIST -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/varietyList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+        android:hint="Reason for Harvest"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ACTIONS -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIntake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send to Intake"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="?attr/colorPrimary"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDiscard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Discard"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="?attr/colorError"/>
+
+    </LinearLayout>
+</ScrollView>

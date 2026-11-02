@@ -1,0 +1,272 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <!-- ================= HEADER GLASS CARD ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/glass_header"
+            android:padding="18dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtGreeting"
+                android:text="Good Morning"
+                android:textSize="13sp"
+                android:textColor="#CCFFFFFF"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/txtUser"
+                    android:text="User"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/txtRole"
+                    android:text="ADMIN"
+                    android:padding="6dp"
+                    android:textSize="11sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/role_badge"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modules"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- ================= ROW 1 ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- FIELD -->
+            <LinearLayout
+                android:id="@+id/cardField"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_qr"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Field Scan"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+            <!-- INTAKE -->
+            <LinearLayout
+                android:id="@+id/cardIntake"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_flower"
+                    app:tint="#FFFFFF" />
+
+                <TextView
+                    style="@style/CardText"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Intake" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ================= ROW 2 ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/cardReports"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_report"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Reports"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cardVariance"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_analysis"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Variance"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ================= ROW 3 ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/cardScanOut"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_exit"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Scan Out"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cardDownloads"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_download"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Downloads"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ================= ROW 4 ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/cardUtilities"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_utilities"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Utilities"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cardfieldDiscard"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_download"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Fiel Discard"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <!-- ================= ROW 5 ================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/cardEditQR"
+                style="@style/GlassCard">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_utilities"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:text="Edit QR Details"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/CardText"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

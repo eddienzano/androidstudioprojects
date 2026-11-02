@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- HEADER -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Bucket Badge -->
+
+            <TextView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:gravity="center"
+                android:text="🪣"
+                android:textSize="18sp"
+                android:background="@drawable/bg_bucket_badge"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtBucket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BK001"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#111827"/>
+
+                <TextView
+                    android:id="@+id/txtLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="60 cm"
+                    android:textSize="12sp"
+                    android:textColor="#6B7280"/>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@drawable/bg_delete_button"
+                android:src="@android:drawable/ic_delete"
+                android:contentDescription="Delete"
+                app:tint="#DC2626" />
+
+        </LinearLayout>
+
+        <!-- DATA ENTRY -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <!-- BUNCHES -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bunches"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="#6B7280"/>
+
+                <EditText
+                    android:id="@+id/etBunches"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="10"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_input"/>
+            </LinearLayout>
+
+            <!-- STEMS -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stems/Bunch"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="#6B7280"/>
+
+                <EditText
+                    android:id="@+id/etStems"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="10"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_input"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

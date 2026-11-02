@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#1A0B10">
+
+    <!-- 🔥 LOGO -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="257dp"
+        android:layout_height="249dp"
+        android:background="@drawable/circle_glow"
+        android:src="@drawable/logo" />
+
+    <!-- ⚽ TITLE -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bungoma Umri FC"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="20dp"/>
+
+    <!-- 🌟 TAGLINE -->
+    <TextView
+        android:id="@+id/tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wazee Hukumbuka"
+        android:textColor="#00BFFF"
+        android:textSize="14sp"
+        android:layout_marginTop="6dp"/>
+
+</LinearLayout>

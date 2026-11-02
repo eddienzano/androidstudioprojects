@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F7F3">
+
+    <!-- ============================================================ -->
+    <!-- TOP APP BAR                                                  -->
+    <!-- ============================================================ -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="18dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="14dp"
+        android:background="#FFFFFF"
+        android:elevation="5dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/scoutingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Field Scouting"
+                android:textColor="#183A24"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/roundStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="● ROUND ACTIVE"
+                android:textColor="#2E7D32"
+                android:textSize="12sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+        <!-- ======================================================== -->
+        <!-- OFFLINE STATUS                                           -->
+        <!-- ======================================================== -->
+
+        <LinearLayout
+            android:id="@+id/syncStatusContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:background="#EAF4EC">
+
+            <TextView
+                android:id="@+id/syncStatusIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="●"
+                android:textColor="#2E7D32"
+                android:textSize="14sp"/>
+
+
+            <TextView
+                android:id="@+id/offlineStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="OFFLINE READY"
+                android:textColor="#285B35"
+                android:textSize="10sp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/pauseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:minWidth="0dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:text="PAUSE"
+                android:textColor="#183A24"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:backgroundTint="#E8F3EA"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!-- ============================================================ -->
+    <!-- SCROLLABLE CONTENT                                          -->
+    <!-- ============================================================ -->
+
+    <ScrollView
+        android:id="@+id/scoutingScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+            <!-- ==================================================== -->
+            <!-- GPS CARD                                              -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/gpsCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:gravity="center"
+                        android:text="📍"
+                        android:textSize="22sp"
+                        android:background="#E8F3EA"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LIVE GPS POSITION"
+                            android:textColor="#183A24"
+                            android:textSize="11sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/gpsStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Acquiring GPS..."
+                            android:textColor="#718078"
+                            android:textSize="13sp"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/gpsAccuracy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Accuracy --"
+                        android:textColor="#2E7D32"
+                        android:textSize="12sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+
+                <!-- Coordinates -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="#F4F8F5">
+
+                    <TextView
+                        android:id="@+id/gpsCoordinates"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="--.------, --.------"
+                        android:textColor="#183A24"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Latitude / Longitude"
+                        android:textColor="#7A877F"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+
+                <!-- GPS Trail -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:background="#F2F7F3">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="●"
+                        android:textColor="#2E7D32"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="GPS trail recording"
+                        android:textColor="#365641"
+                        android:textSize="12sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/gpsTrailPointCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#718078"
+                        android:textSize="12sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- ============================================================ -->
+            <!-- CURRENT LOCATION / PENDING PACKAGE                          -->
+            <!-- ============================================================ -->
+
+            <LinearLayout
+                android:id="@+id/scanningPointCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CURRENT OBSERVATION LOCATION"
+                    android:textColor="#718078"
+                    android:textSize="11sp"
+                    android:textStyle="bold"/>
+
+
+                <TextView
+                    android:id="@+id/scanningPointContext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="No scanning point committed yet"
+                    android:textColor="#183A24"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Observations are held locally until the scanning-point QR is scanned."
+                    android:textColor="#7B887F"
+                    android:textSize="11sp"/>
+
+
+                <!-- ======================================================== -->
+                <!-- PENDING PACKAGE                                         -->
+                <!-- ======================================================== -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="14dp"
+                    android:background="#F1F7F2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PENDING PACKAGE"
+                            android:textColor="#2E7D32"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Waiting for scanning point QR"
+                            android:textColor="#718078"
+                            android:textSize="11sp"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/pendingObservationCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#183A24"
+                        android:textSize="28sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+
+                <!-- ======================================================== -->
+                <!-- SCAN QR                                                  -->
+                <!-- ======================================================== -->
+
+                <Button
+                    android:id="@+id/scanScanningPointButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="14dp"
+                    android:text="SCAN SCANNING POINT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#2E7D32"/>
+
+            </LinearLayout>
+
+            <!-- ==================================================== -->
+            <!-- FIELD CONTEXT                                        -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/contextCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FIELD CONTEXT"
+                    android:textColor="#718078"
+                    android:textSize="11sp"
+                    android:textStyle="bold"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GREENHOUSE"
+                            android:textColor="#8A968E"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/greenhouseContext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="--"
+                            android:textColor="#183A24"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BEDS"
+                            android:textColor="#8A968E"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/bedContext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0 mapped beds"
+                            android:textColor="#183A24"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- OBSERVATION TYPE                                     -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/observationTypeCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OBSERVATION TYPE"
+                    android:textColor="#718078"
+                    android:textSize="11sp"
+                    android:textStyle="bold"/>
+
+
+                <Spinner
+                    android:id="@+id/observationTypeSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="10dp"/>
+
+
+                <TextView
+                    android:id="@+id/observationSaveStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Select an observation"
+                    android:textColor="#7A877F"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- SCORE                                                 -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/scoreCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OBSERVATION SCORE"
+                    android:textColor="#718078"
+                    android:textSize="11sp"
+                    android:textStyle="bold"/>
+
+
+                <Spinner
+                    android:id="@+id/scoreSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- TREND                                                 -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/trendCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TREND"
+                    android:textColor="#718078"
+                    android:textSize="11sp"
+                    android:textStyle="bold"/>
+
+
+                <Spinner
+                    android:id="@+id/trendSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- FIELD NOTES                                          -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/commentsCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FIELD NOTES"
+                    android:textColor="#718078"
+                    android:textSize="11sp"
+                    android:textStyle="bold"/>
+
+
+                <EditText
+                    android:id="@+id/commentInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="top|start"
+                    android:hint="Add observations, symptoms or field notes..."
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:padding="14dp"
+                    android:textColor="#20372A"
+                    android:textColorHint="#9AA59E"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- SEVERE POINT                                         -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/severePointCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFF8F6"
+                android:elevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:gravity="center"
+                        android:text="!"
+                        android:textColor="#FFFFFF"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        android:background="#C94A3A"/>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SEVERE POINT"
+                            android:textColor="#9D3A2E"
+                            android:textSize="12sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/severePointStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="No severe point marked"
+                            android:textColor="#7F6863"
+                            android:textSize="12sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/markSevereButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="14dp"
+                    android:text="MARK SEVERE POINT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#C94A3A"/>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- PHOTO                                                 -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/photoCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHOTO EVIDENCE"
+                    android:textColor="#718078"
+                    android:textSize="11sp"
+                    android:textStyle="bold"/>
+
+
+                <Button
+                    android:id="@+id/photoButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="12dp"
+                    android:text="📷  TAKE PHOTO"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- SAVE OBSERVATION                                     -->
+            <!-- ==================================================== -->
+
+            <Button
+                android:id="@+id/saveObservationButton"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="18dp"
+                android:text="SAVE OBSERVATION"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:backgroundTint="#246B35"/>
+
+
+            <!-- ==================================================== -->
+            <!-- SAVE STATUS                                           -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/localSaveStatusContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="●"
+                    android:textColor="#2E7D32"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/localSaveStatusText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Ready to save locally"
+                    android:textColor="#64736A"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- ROUND STATISTICS                                      -->
+            <!-- ==================================================== -->
+
+            <LinearLayout
+                android:id="@+id/roundProgressCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ROUND STATISTICS"
+                    android:textColor="#718078"
+                    android:textSize="11sp"
+                    android:textStyle="bold"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <!-- Observations -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/observationCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#183A24"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OBSERVATIONS"
+                            android:textColor="#7A877F"
+                            android:textSize="9sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+
+                    <!-- Severe -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/severePointCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#C94A3A"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SEVERE"
+                            android:textColor="#7A877F"
+                            android:textSize="9sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+
+                    <!-- GPS -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/gpsPointCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#2E7D32"
+                            android:textSize="25sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GPS POINTS"
+                            android:textColor="#7A877F"
+                            android:textSize="9sp"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- ==================================================== -->
+            <!-- COMPLETE ROUND                                       -->
+            <!-- ==================================================== -->
+
+            <Button
+                android:id="@+id/completeRoundButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="24dp"
+                android:text="COMPLETE SCOUTING ROUND"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <!-- ============================================================ -->
+    <!-- BOTTOM ACTION BAR                                            -->
+    <!-- ============================================================ -->
+
+    <LinearLayout
+        android:id="@+id/bottomActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="#FFFFFF"
+        android:elevation="8dp">
+
+        <Button
+            android:id="@+id/nextPointButton"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="5dp"
+            android:text="FINISH &amp; SCAN QR"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+
+
+        <Button
+            android:id="@+id/saveAndNextButton"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:text="SAVE OBSERVATION"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:backgroundTint="#246B35"/>
+
+    </LinearLayout>
+
+</LinearLayout>

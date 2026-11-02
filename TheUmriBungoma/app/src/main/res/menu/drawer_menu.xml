@@ -1,0 +1,43 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:id="@+id/nav_fixtures"
+        android:title="Fixtures And Results"
+        android:icon="@drawable/ic_fixture"/>
+
+    <item
+        android:id="@+id/nav_squad"
+        android:title="Squad"
+        android:icon="@drawable/ic_team"/>
+
+    <item
+        android:id="@+id/nav_league"
+        android:title="League Table"
+        android:icon="@drawable/ic_table"/>
+
+    <item
+        android:id="@+id/nav_news"
+        android:title="News And Updates"
+        android:icon="@drawable/ic_news"/>
+
+    <item
+        android:id="@+id/nav_media"
+        android:title="Media Gallery"
+        android:icon="@drawable/ic_media"/>
+
+    <item
+        android:id="@+id/nav_fanzone"
+        android:title="Fan Zone"
+        android:icon="@drawable/ic_fans"/>
+
+    <item
+        android:id="@+id/nav_club"
+        android:title="Club Info"
+        android:icon="@drawable/ic_info"/>
+
+</menu>

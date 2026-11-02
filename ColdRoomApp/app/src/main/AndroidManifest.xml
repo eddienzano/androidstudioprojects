@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aaagrowers.coldroom">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <!-- Add this permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ColdRoomApp">
+
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/database_backup_paths" />
+        </provider>
+
+
+        <!-- Main activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- QR scan activity -->
+        <activity
+            android:name=".ScanActivity"
+            android:exported="true" />
+
+        <!-- Stock scan activity -->
+        <activity
+            android:name=".stocks.StockScanActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ConfirmActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".StockTakeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".stocks.GradedStockScanActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".GradedStockTakeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".storage.BoxFillActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".warehouse.WarehouseStockScanActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".BoxSyncActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".BoxScanActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ScanOutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".DipScanActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.SummersStockTakeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.SummersScanActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.SummersVerifyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.SummersVerifyScanActivity"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".DatabaseBackupActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".DatabaseRestoreActivity"
+            android:exported="false" />
+
+
+    </application>
+
+</manifest>

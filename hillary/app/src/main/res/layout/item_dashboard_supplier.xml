@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- SUPPLIER NAME -->
+    <TextView
+        android:id="@+id/txtSupplierName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Supplier Name"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:textColor="#000"/>
+
+    <!-- TOTAL PRODUCTS -->
+    <TextView
+        android:id="@+id/txtSupplierProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Products: 0"
+        android:textSize="14sp"
+        android:textColor="#666"
+        android:layout_marginTop="5dp"/>
+
+    <!-- TOTAL STOCK -->
+    <TextView
+        android:id="@+id/txtSupplierStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stock: 0"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#4CAF50"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

@@ -1,0 +1,695 @@
+package com.yourapp;
+
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.ToneGenerator;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.Response;
+
+public class NewIntakeActivity extends AppCompatActivity {
+
+
+    private Spinner spinnerColdroom;
+    private AutoCompleteTextView etVariety;
+    private EditText etQrInput;
+    private Button btnSubmit, btnCameraScan;
+    private RecyclerView rvQrList;
+
+    private ArrayList<QrItem> scannedQRCodes = new ArrayList<>();
+    private QrAdapter qrAdapter;
+
+    private final String BASE_URL = "https://www.aaagrowers.co.ke/inventory/";
+    private Integer selectedVarietyId = null;
+    private String selectedVarietyName = null;
+    private String selectedGreenhouseName = null;
+
+    private BroadcastReceiver honeywellScanReceiver;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_intake);
+
+        spinnerColdroom = findViewById(R.id.spinnerColdroom);
+        etVariety = findViewById(R.id.etVariety);
+        etQrInput = findViewById(R.id.etQrInput);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        btnCameraScan = findViewById(R.id.btnCameraScan);
+        rvQrList = findViewById(R.id.rvQrList);
+
+        // 1️⃣ Coldroom spinner setup
+        ArrayAdapter<CharSequence> coldroomAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.coldroom_labels,
+                R.layout.spinner_item
+        );
+        coldroomAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinnerColdroom.setAdapter(coldroomAdapter);
+
+// Optional: set default
+        spinnerColdroom.setSelection(1);
+
+        // 2️⃣ RecyclerView setup
+        qrAdapter = new QrAdapter(scannedQRCodes);
+        rvQrList.setLayoutManager(new LinearLayoutManager(this));
+        rvQrList.setAdapter(qrAdapter);
+
+        // Force enable for testing
+        etQrInput.setEnabled(true);
+
+        // 3️⃣ Coldroom + variety selection enables scanning
+        spinnerColdroom.setOnItemSelectedListener(new SimpleItemSelectedListener(this::toggleScanInput));
+        etVariety.setOnItemClickListener((parent, view, position, id) -> toggleScanInput());
+
+        // 4️⃣ QR text input listener (Honeywell-ready)
+        etQrInput.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                handleQrScan(etQrInput.getText().toString());
+                return true;
+            }
+            return false;
+        });
+        // 3️⃣ Add this after the OnKeyListener:
+        etQrInput.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().contains("|")) { // or whatever pattern your QR uses
+                    handleQrScan(s.toString().trim());
+                    etQrInput.setText("");
+                }
+            }
+        });
+
+        // 5️⃣ Camera scanner
+        btnCameraScan.setOnClickListener(v -> {
+            IntentIntegrator integrator = new IntentIntegrator(NewIntakeActivity.this);
+            integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+            integrator.setPrompt("Scan QR Code");
+            integrator.setCameraId(0);
+            integrator.setBeepEnabled(true);
+            integrator.setBarcodeImageEnabled(false);
+            integrator.initiateScan();
+        });
+
+        // 6️⃣ Autocomplete setup
+        setupVarietySearch();
+
+        setupHoneywellScanner();
+
+        // 7️⃣ Submit button
+        btnSubmit.setOnClickListener(v -> submitIntake());
+    }
+
+    private void vibrateError() {
+        try {
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator.vibrate(android.os.VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    vibrator.vibrate(300); // deprecated but works on older devices
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void playErrorBeep() {
+        ToneGenerator toneGen = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+        toneGen.startTone(ToneGenerator.TONE_PROP_BEEP, 150); // 150ms beep
+    }
+
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    private void setupHoneywellScanner() {
+        honeywellScanReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                try {
+                    String barcodeData = null;
+
+                    // Honeywell scanners may send data under different keys
+                    if (intent.hasExtra("data")) {
+                        barcodeData = intent.getStringExtra("data");
+                    } else if (intent.hasExtra("barcode")) {
+                        barcodeData = intent.getStringExtra("barcode");
+                    } else if (intent.hasExtra("decoded_string")) {
+                        barcodeData = intent.getStringExtra("decoded_string");
+                    }
+
+                    if (!TextUtils.isEmpty(barcodeData)) {
+                        final String scannedData = barcodeData.trim();
+
+                        runOnUiThread(() -> {
+                            // ✅ Process the scan immediately
+                            handleQrScan(scannedData);
+
+                            // Optional short confirmation
+                            Toast.makeText(NewIntakeActivity.this,
+                                    "✅ Scan received: " + scannedData,
+                                    Toast.LENGTH_SHORT).show();
+
+                            // Reset and focus input
+                            etQrInput.setText("");
+                            etQrInput.requestFocus();
+                        });
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(NewIntakeActivity.this,
+                            "Scan error: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+        // Register receiver for Honeywell intents
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.honeywell.scan.RESULT");
+        filter.addAction("com.honeywell.aidc.action.SCAN");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(honeywellScanReceiver, filter, Context.RECEIVER_EXPORTED);
+        } else {
+            registerReceiver(honeywellScanReceiver, filter);
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try { unregisterReceiver(honeywellScanReceiver); } catch (Exception ignored) {}
+    }
+
+    /** Enable/disable scanning **/
+    private void toggleScanInput() {
+        // Enable scanning once a coldroom is selected (ignore variety for enabling)
+        boolean enable = spinnerColdroom.getSelectedItemPosition() > 0;
+        etQrInput.setEnabled(enable);
+
+        if (enable) {
+            etQrInput.requestFocus();
+        } else {
+            etQrInput.clearFocus();
+        }
+    }
+
+
+    /** Handle QR scans **/
+    private void handleQrScan(String qr) {
+        if (TextUtils.isEmpty(qr)) return;
+
+        for (QrItem item : scannedQRCodes) {
+            if (item.qr.equals(qr)) {
+                Toast.makeText(this, "Duplicate QR: " + qr, Toast.LENGTH_SHORT).show();
+                etQrInput.setText("");
+                vibrateError(); // 🔔 Vibrate on duplicate
+                playErrorBeep();
+                return;
+            }
+        }
+
+        QrItem parsed = parseQR(qr);
+        if (parsed == null) {
+            Toast.makeText(this, "❌ Invalid QR format", Toast.LENGTH_SHORT).show();
+            etQrInput.setText("");
+            return;
+        }
+
+        scannedQRCodes.add(parsed);
+        qrAdapter.notifyDataSetChanged();
+        etQrInput.setText("");
+
+        // 🔥 ALSO send to stock scan endpoint
+       // StockScanUploader.upload(this, parsed.qr);
+
+        // ✅ validate just this one QR
+        validateSingleQR(parsed);
+    }
+
+    private void validateSingleQR(QrItem qrItem) {
+        try {
+            JSONArray qrArray = new JSONArray();
+            JSONObject obj = new JSONObject();
+            obj.put("qr", qrItem.qr);
+            qrArray.put(obj);
+
+            JSONObject postData = new JSONObject();
+            postData.put("qrcodes", qrArray);
+            postData.put("variety_id", selectedVarietyId); // 🔴 REQUIRED
+
+            String url = BASE_URL + "intake_new_validate.php";
+            RequestQueue queue = Volley.newRequestQueue(this);
+
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.POST,
+                    url,
+                    postData,
+                    response -> {
+
+                        // ---------- INVALID ----------
+                        if ("invalid".equals(response.optString("status"))) {
+                            JSONObject errors = response.optJSONObject("errors");
+                            if (errors != null && errors.has(qrItem.qr)) {
+                                qrItem.isInvalid = true;
+                                qrItem.errorMessage = errors.optString(qrItem.qr);
+                                vibrateError();
+                                playErrorBeep();
+                                Toast.makeText(
+                                        this,
+                                        "❌ Invalid: " + qrItem.errorMessage,
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+                        }
+                        // ---------- VALID ----------
+                        else {
+                            qrItem.isInvalid = false;
+                            qrItem.errorMessage = "";
+
+                            // ✅ APPLY SERVER BUCKET RATE
+                            JSONObject results = response.optJSONObject("results");
+                            if (results != null && results.has(qrItem.qr)) {
+                                int rate = results
+                                        .optJSONObject(qrItem.qr)
+                                        .optInt("bucket_rate", qrItem.stems);
+                                qrItem.stems = rate;
+                            }
+                        }
+
+                        qrAdapter.notifyDataSetChanged();
+                    },
+                    error -> Toast.makeText(
+                            this,
+                            "Validation error: " + error.getMessage(),
+                            Toast.LENGTH_SHORT
+                    ).show()
+            );
+
+            queue.add(request);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /** Parse QR **/
+    private QrItem parseQR(String qr) {
+        try {
+            String[] parts = qr.split("\\|");
+            HashMap<String, String> map = new HashMap<>();
+
+            for (String part : parts) {
+                String[] kv = part.split(":", 2);
+                if (kv.length == 2) {
+                    map.put(kv[0].trim().toLowerCase(), kv[1].trim());
+                }
+            }
+
+            QrItem item = new QrItem();
+            item.qr = qr;
+            item.serial = map.get("serial");
+            item.bucket_name = map.get("bucket");
+            item.farm = map.get("farm");
+            item.length = map.get("length");
+
+            // ❌ DO NOT APPLY DEFAULT HERE
+            item.stems = 90;
+
+            return item;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    /** Validate QRs via PHP **/
+    private void validateQRCodes(ArrayList<QrItem> qrItems) {
+        try {
+            JSONArray qrArray = new JSONArray();
+            for (QrItem item : qrItems) {
+                JSONObject obj = new JSONObject();
+                obj.put("qr", item.qr);
+                qrArray.put(obj);
+            }
+
+            JSONObject postData = new JSONObject();
+            postData.put("qrcodes", qrArray);
+
+            String url = BASE_URL + "intake_validate.php";
+            RequestQueue queue = Volley.newRequestQueue(this);
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, postData,
+                    response -> {
+                        if ("invalid".equals(response.optString("status"))) {
+                            JSONObject errors = response.optJSONObject("errors");
+                            if (errors != null) {
+                                JSONArray keys = errors.names();
+                                if (keys != null) {
+                                    for (int i = 0; i < keys.length(); i++) {
+                                        try {
+                                            String qr = keys.getString(i);
+                                            String msg = errors.getString(qr);
+                                            for (QrItem item : qrItems) {
+                                                if (item.qr.equals(qr)) {
+                                                    item.isInvalid = true;
+                                                    item.errorMessage = msg;
+                                                }
+                                            }
+                                        } catch (JSONException ignored) {}
+                                    }
+                                }
+                            }
+                            qrAdapter.notifyDataSetChanged();
+                            Toast.makeText(this, "Some QRs invalid", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "All QRs valid!", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    error -> Toast.makeText(this, "Validation error: " + error.getMessage(), Toast.LENGTH_SHORT).show());
+            queue.add(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /** Autocomplete setup **/
+    private void setupVarietySearch() {
+        etVariety.setThreshold(2);
+        etVariety.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 1) {
+                    String term = s.toString().trim();
+                    String farm = ""; // optional: replace with actual farm field if available
+
+                    HttpUrl url = HttpUrl.parse(BASE_URL + "search_variety.php")
+                            .newBuilder()
+                            .addQueryParameter("term", term)
+                            .addQueryParameter("farm", farm)
+                            .build();
+
+                    okhttp3.Request request = new okhttp3.Request.Builder().url(url).build();
+                    ApiClient.getInstance().getClient().newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            runOnUiThread(() ->
+                                    Toast.makeText(NewIntakeActivity.this,
+                                            "Error fetching varieties",
+                                            Toast.LENGTH_SHORT).show());
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            try {
+                                String resp = response.body().string();
+                                JSONArray arr = new JSONArray(resp);
+                                List<String> names = new ArrayList<>();
+                                HashMap<String, JSONObject> map = new HashMap<>();
+
+                                for (int i = 0; i < arr.length(); i++) {
+                                    JSONObject obj = arr.getJSONObject(i);
+                                    String display = obj.getString("DisplayName");
+                                    names.add(display);
+                                    map.put(display, obj);
+                                }
+
+                                runOnUiThread(() -> {
+                                    ArrayAdapter<String> adapter =
+                                            new ArrayAdapter<>(NewIntakeActivity.this,
+                                                    R.layout.autocomplete_item, names);
+                                    etVariety.setAdapter(adapter);
+
+                                    etVariety.setOnItemClickListener((parent, view, position, id) -> {
+                                        String selected = adapter.getItem(position);
+                                        if (selected != null) {
+                                            JSONObject obj = map.get(selected);
+                                            if (obj != null) {
+                                                selectedVarietyId = obj.optInt("VarietyId");
+                                                selectedVarietyName = obj.optString("VarietyName");
+                                                selectedGreenhouseName = obj.optString("GreenhouseName");
+                                            }
+                                        }
+                                    });
+                                });
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                runOnUiThread(() ->
+                                        Toast.makeText(NewIntakeActivity.this,
+                                                "Error parsing variety data",
+                                                Toast.LENGTH_SHORT).show());
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    /** Fetch varieties like IntakeActivity **/
+    private void fetchVarietySuggestions(String term) {
+        String farm = ""; // optional: adjust if you have farm input
+        HttpUrl url = HttpUrl.parse(BASE_URL + "search_variety.php")
+                .newBuilder()
+                .addQueryParameter("term", term)
+                .addQueryParameter("farm", farm)
+                .build();
+
+        okhttp3.Request request = new okhttp3.Request.Builder().url(url).build();
+
+        ApiClient.getInstance().getClient().newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                runOnUiThread(() ->
+                        Toast.makeText(NewIntakeActivity.this, "Error fetching varieties", Toast.LENGTH_SHORT).show());
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                try {
+                    String resp = response.body().string();
+                    JSONArray arr = new JSONArray(resp);
+                    List<String> names = new ArrayList<>();
+                    HashMap<String, JSONObject> map = new HashMap<>();
+
+                    for (int i = 0; i < arr.length(); i++) {
+                        JSONObject obj = arr.getJSONObject(i);
+                        String display = obj.getString("DisplayName");
+                        names.add(display);
+                        map.put(display, obj);
+                    }
+
+                    runOnUiThread(() -> {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(NewIntakeActivity.this,
+                                R.layout.autocomplete_item, names);
+                        etVariety.setAdapter(adapter);
+                        etVariety.setOnItemClickListener((parent, view, position, id) -> {
+                            String selected = adapter.getItem(position);
+                            if (selected != null) {
+                                JSONObject obj = map.get(selected);
+                                if (obj != null) {
+                                    selectedVarietyId = obj.optInt("VarietyId");
+                                    selectedVarietyName = obj.optString("VarietyName");
+                                    selectedGreenhouseName = obj.optString("GreenhouseName");
+                                    Toast.makeText(NewIntakeActivity.this,
+                                            "Selected: " + selectedVarietyName,
+                                            Toast.LENGTH_SHORT).show();
+                                    toggleScanInput();
+                                }
+                            }
+                        });
+                    });
+                } catch (Exception e) {
+                    runOnUiThread(() ->
+                            Toast.makeText(NewIntakeActivity.this, "Error parsing variety data", Toast.LENGTH_SHORT).show());
+                }
+            }
+        });
+    }
+
+    private void showIntakeConfirmationDialog() {
+
+        int bucketCount = scannedQRCodes.size();
+
+        String coldroomLabel = spinnerColdroom.getSelectedItem().toString();
+        String variety = selectedVarietyName != null ? selectedVarietyName : "";
+        String greenhouse = selectedGreenhouseName != null ? selectedGreenhouseName : "";
+
+        String message =
+                "Please confirm intake details:\n\n" +
+                        "🪣 Buckets: " + bucketCount + "\n" +
+                        "🌸 Variety: " + variety + "\n" +
+                        "🌱 Greenhouse: " + greenhouse + "\n" +
+                        "🧊 Coldroom: " + coldroomLabel + "\n";
+
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Confirm Intake")
+                .setMessage(message)
+                .setPositiveButton("Confirm", (dialog, which) -> {
+                    // ✅ Proceed with actual submission
+                    submitIntakeToServer();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+
+
+
+    private void submitIntake() {
+
+        if (selectedVarietyId == null) {
+            Toast.makeText(this, "Please select a flower variety", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (spinnerColdroom.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please select a coldroom", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (scannedQRCodes.isEmpty()) {
+            Toast.makeText(this, "No QR codes scanned", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // ✅ Show confirmation dialog instead of submitting immediately
+        showIntakeConfirmationDialog();
+    }
+
+
+    private void submitIntakeToServer() {
+
+        JSONArray qrArray = new JSONArray();
+        for (QrItem item : scannedQRCodes) {
+            if (item.stems <= 0) item.stems = 1;
+
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("qr", item.qr);
+                obj.put("serial", item.serial);
+                obj.put("bucket_name", item.bucket_name);
+                obj.put("farm", item.farm);
+                obj.put("length", item.length);
+                obj.put("stems", item.stems);
+                qrArray.put(obj);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Error preparing QR: " + item.qr, Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("qrcodes", qrArray);
+
+            int pos = spinnerColdroom.getSelectedItemPosition();
+            String[] coldroomValues = getResources().getStringArray(R.array.coldroom_values);
+            postData.put("coldroom", coldroomValues[pos]);
+
+            postData.put("variety_id", selectedVarietyId);
+            postData.put("variety_name", selectedVarietyName);
+            postData.put("block", selectedGreenhouseName);
+            postData.put("user_id", 123);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error preparing intake data", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String url = BASE_URL + "new_intake_process.php";
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                postData,
+                response -> {
+                    Toast.makeText(this,
+                            response.optString("message"),
+                            Toast.LENGTH_LONG).show();
+
+                    if ("success".equals(response.optString("status"))) {
+                        scannedQRCodes.clear();
+                        qrAdapter.notifyDataSetChanged();
+                        etVariety.setText("");
+                        spinnerColdroom.setSelection(0);
+                    }
+                },
+                error -> Toast.makeText(this,
+                        "Submission error: " + error.getMessage(),
+                        Toast.LENGTH_SHORT).show()
+        );
+
+        queue.add(request);
+    }
+
+
+
+    /** Camera result **/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable android.content.Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null && result.getContents() != null) {
+            etQrInput.setText(result.getContents());
+            handleQrScan(result.getContents());
+        }
+    }
+
+    /** Model **/
+    public static class QrItem {
+        public String qr, serial, bucket_name, farm, length;
+        public int stems;
+        public boolean isInvalid = false;
+        public String errorMessage = "";
+    }
+}

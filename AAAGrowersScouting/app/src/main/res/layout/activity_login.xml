@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/bg_login_screen"
+    android:overScrollMode="never"
+    tools:context=".auth.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="42dp"
+        android:paddingBottom="28dp">
+
+
+        <!-- ========================================================= -->
+        <!-- BRAND -->
+        <!-- ========================================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <!-- BRAND MARK -->
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:gravity="center"
+                android:background="@drawable/bg_brand_mark">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans" />
+
+            </LinearLayout>
+
+
+            <!-- BRAND NAME -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/brandTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AAA GROWERS"
+                    android:textColor="#173A2A"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:fontFamily="sans" />
+
+                <TextView
+                    android:id="@+id/brandSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="FIELD INTELLIGENCE"
+                    android:textColor="#5B806B"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.16" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- ========================================================= -->
+        <!-- HERO -->
+        <!-- ========================================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="54dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WELCOME BACK"
+                android:textColor="#4E7C62"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.18" />
+
+            <TextView
+                android:id="@+id/loginTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="Ready for the field?"
+                android:textColor="#163326"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:fontFamily="sans" />
+
+            <TextView
+                android:id="@+id/loginDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="Sign in to continue your scouting round and capture what is happening in the field."
+                android:textColor="#657A6D"
+                android:textSize="14sp"
+                android:lineSpacingExtra="3dp" />
+
+        </LinearLayout>
+
+
+        <!-- ========================================================= -->
+        <!-- LOGIN CARD -->
+        <!-- ========================================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="vertical"
+            android:padding="22dp"
+            android:background="@drawable/bg_login_card"
+            android:elevation="10dp">
+
+
+            <!-- ===================================================== -->
+            <!-- USERNAME LABEL -->
+            <!-- ===================================================== -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USERNAME"
+                android:textColor="#496455"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12" />
+
+
+            <!-- USERNAME FIELD -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:paddingStart="13dp"
+                android:paddingEnd="13dp"
+                android:background="@drawable/bg_login_input">
+
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:contentDescription="Username"
+                    android:src="@drawable/ic_person"
+                    app:tint="#5E8D70" />
+
+                <EditText
+                    android:id="@+id/usernameInput"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="9dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Enter your username"
+                    android:inputType="text"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="8dp"
+                    android:singleLine="true"
+                    android:textColor="#203B2D"
+                    android:textColorHint="#9AAA9F"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- PASSWORD LABEL -->
+            <!-- ===================================================== -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="PASSWORD"
+                android:textColor="#496455"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12" />
+
+
+            <!-- PASSWORD FIELD -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:paddingStart="13dp"
+                android:paddingEnd="4dp"
+                android:background="@drawable/bg_login_input">
+
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:contentDescription="Password"
+                    android:src="@drawable/ic_lock"
+                    app:tint="#5E8D70" />
+
+                <EditText
+                    android:id="@+id/passwordInput"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="9dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Enter your password"
+                    android:inputType="textPassword"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="4dp"
+                    android:singleLine="true"
+                    android:textColor="#203B2D"
+                    android:textColorHint="#9AAA9F"
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:id="@+id/passwordToggle"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Show or hide password"
+                    android:padding="11dp"
+                    android:src="@drawable/ic_visibility"
+                    app:tint="#718579" />
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- LOGIN STATUS -->
+            <!-- ===================================================== -->
+
+            <TextView
+                android:id="@+id/loginStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:textColor="#C44747"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+
+            <!-- ===================================================== -->
+            <!-- SIGN IN BUTTON -->
+            <!-- ===================================================== -->
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_login_button"
+                android:stateListAnimator="@null"
+                android:text="Sign in     →"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08" />
+
+
+            <!-- ===================================================== -->
+            <!-- OFFLINE INDICATOR -->
+            <!-- ===================================================== -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="17dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:background="@drawable/bg_status_dot" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:text="Offline-ready field application"
+                    android:textColor="#71847A"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- ========================================================= -->
+        <!-- FOOTER -->
+        <!-- ========================================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AAA GROWERS"
+                android:textColor="#789083"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Scouting • Observation • Field Intelligence"
+                android:textColor="#9AA9A0"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

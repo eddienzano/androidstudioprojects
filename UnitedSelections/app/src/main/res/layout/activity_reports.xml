@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- HEADER -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reports Dashboard"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/textSecondary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daily overview and analytics"
+            android:textSize="13sp"
+            android:textColor="#777777"
+            android:layout_marginTop="2dp" />
+
+        <!-- SUMMARY CARDS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:weightSum="4">
+
+            <!-- HARVEST -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/card_modern"
+                android:padding="12dp"
+                android:layout_marginEnd="6dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_flower"
+                    android:tint="@color/primary"
+                    tools:ignore="UseAppTint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harvest"
+                    android:textSize="13sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/txtHarvestValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+            <!-- INTAKE -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/card_modern"
+                android:padding="12dp"
+                android:layout_marginEnd="6dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_qr"
+                    android:tint="@color/primary"
+                    tools:ignore="UseAppTint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Intake"
+                    android:textSize="13sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/txtIntakeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+            <!-- DISCARDS -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/card_modern"
+                android:padding="12dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_discard"
+                    android:tint="#D32F2F"
+                    tools:ignore="UseAppTint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discards"
+                    android:textSize="13sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/txtDiscardValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#D32F2F"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+            <!-- SCAN OUT -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/card_modern"
+                android:padding="12dp"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_exit"
+                    app:tint="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Scan Out"
+                    android:textSize="13sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/txtScanOutValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- VARIETY BREAKDOWN -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top Varieties"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/textSecondary"
+            android:layout_marginTop="24dp" />
+
+        <LinearLayout
+            android:id="@+id/varietyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp" />
+
+        <!-- DETAILED REPORTS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detailed Reports"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/textSecondary"
+            android:layout_marginTop="24dp" />
+
+        <!-- ITEM -->
+        <LinearLayout
+            android:id="@+id/btnHarvestReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_modern"
+            android:padding="14dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_report"
+                android:tint="@color/primary"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Field Harvest Report"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="#999999"
+                tools:ignore="UseAppTint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnIntakeReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_modern"
+            android:padding="14dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_report"
+                android:tint="@color/primary"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Intake Verification Report"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="#999999"
+                tools:ignore="UseAppTint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDiscardReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_modern"
+            android:padding="14dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_analysis"
+                android:tint="@color/primary"
+                tools:ignore="UseAppTint" />
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Discard Analysis"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="#999999"
+                tools:ignore="UseAppTint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnIssuanceReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_modern"
+            android:padding="14dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_analysis"
+                android:tint="@color/primary"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Issuance Report"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="#999999"
+                tools:ignore="UseAppTint" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F7FA"
+    android:padding="20dp">
+
+    <!-- Header (smaller) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/header_gradient"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:text="Coldroom Scanner"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <!-- DASHBOARD -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <!-- VALID -->
+        <TextView
+            android:id="@+id/tvValid"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:background="@drawable/input_box"
+            android:textColor="#2E7D32"/>
+
+        <!-- DUPLICATES -->
+        <TextView
+            android:id="@+id/tvDuplicate"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:background="@drawable/input_box"
+            android:textColor="#C62828"/>
+
+        <!-- TOTAL -->
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:background="@drawable/input_box"
+            android:textColor="#000000"/>
+    </LinearLayout>
+
+    <!-- RESET -->
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Reset Counter"
+        android:backgroundTint="#FF5252"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Input -->
+    <EditText
+        android:id="@+id/inputScan"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="Scan QR code"
+        android:background="@drawable/input_box"
+        android:padding="16dp"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/btnCameraScan"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="📷 Scan Camera"
+        android:background="@drawable/primary_button"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/btnSendDb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SEND TO DB"/>
+
+</LinearLayout>

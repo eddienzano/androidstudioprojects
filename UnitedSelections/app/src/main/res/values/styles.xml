@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- =========================
+         GLASS CARD STYLE
+    ========================== -->
+    <style name="GlassCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">140dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:background">@drawable/glass_card</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:elevation">12dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- Card text -->
+    <style name="CardText">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- HEADER TEXT -->
+    <style name="HeaderUserText">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="HeaderSubText">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#CCFFFFFF</item>
+    </style>
+
+</resources>

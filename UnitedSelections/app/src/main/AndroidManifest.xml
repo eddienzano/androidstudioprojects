@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UnitedSelections">
+
+        <!-- Launcher Activity -->
+        <activity android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".DashboardActivity"/>
+        <activity android:name=".field.FieldScanActivity"/>
+        <activity android:name=".field.FieldDiscardActivity"/>
+        <activity android:name=".intake.IntakeScanActivity"/>
+        <activity android:name=".intake.ScanOutActivity"/>
+        <activity android:name=".admin.AdminAdjustmentActivity"/>
+        <activity android:name=".admin.ReportsActivity"/>
+        <activity android:name=".admin.FieldHarvestReportActivity"/>
+        <activity android:name=".admin.IntakeReportActivity"/>
+        <activity android:name=".admin.DiscardReportActivity"/>
+        <activity android:name=".admin.VarianceActivity"/>
+        <activity android:name=".admin.IssuanceActivity"/>
+        <activity android:name=".admin.AddVarietyActivity"/>
+        <activity android:name=".admin.UtilitiesActivity"/>
+        <activity android:name=".admin.VarianceEditActivity"/>
+        <activity android:name=".admin.ReportDownloadsActivity"/>
+        <activity android:name=".admin.ScanoutReportActivity"/>
+        <activity android:name=".admin.EditVarietyActivity"/>
+        <activity android:name=".admin.AddGreenhouseActivity"/>
+        <activity android:name=".admin.EditGreenhouseActivity"/>
+        <activity android:name=".admin.EditUserActivity"/>
+        <activity android:name=".admin.CreateUserActivity"/>
+        <activity android:name=".admin.UsersActivity"/>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,59 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- QR -->
+        <TextView
+            android:id="@+id/txtQR"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Harvest -->
+        <TextView
+            android:id="@+id/txtHarvest"
+            android:textColor="#4CAF50"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Intake -->
+        <TextView
+            android:id="@+id/txtIntake"
+            android:textColor="#2196F3"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Status -->
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnResolve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resolve"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

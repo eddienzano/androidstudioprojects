@@ -1,0 +1,103 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- TITLE -->
+        <TextView
+            android:text="🚚 Scan-Out"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2E3A59"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- SCAN BUTTON -->
+        <Button
+            android:id="@+id/scanBtn"
+            android:text="📷 Scan QR"
+            android:backgroundTint="#3F51B5"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <!-- QR INPUT -->
+        <EditText
+            android:id="@+id/qrInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Scan or enter QR"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- QR DISPLAY -->
+        <TextView
+            android:id="@+id/serial"
+            android:text="QR:"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- STATUS -->
+        <TextView
+            android:id="@+id/statusText"
+            android:text="Status:"
+            android:textColor="#666"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- DESTINATION -->
+        <Spinner
+            android:id="@+id/spDestination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+
+        <!-- TARGET -->
+        <AutoCompleteTextView
+            android:id="@+id/etTarget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Customer / Trial / Greenhouse"
+            android:layout_marginTop="10dp"/>
+
+        <!-- ITEMS LIST -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"/>
+
+        <!-- PARTIAL BUTTON -->
+        <Button
+            android:id="@+id/submitPartialBtn"
+            android:text="📦 Submit Partial"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"/>
+
+        <!-- FULL BUTTON -->
+        <Button
+            android:id="@+id/confirmBtn"
+            android:text="✅ Full Scan-Out"
+            android:backgroundTint="#D32F2F"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+</ScrollView>

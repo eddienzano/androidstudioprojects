@@ -1,0 +1,209 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yourapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.YourApp"
+        android:usesCleartextTraffic="true"
+
+        >
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <!-- LoginActivity (no launcher intent, no need exported) -->
+        <activity android:name=".LoginActivity" />
+
+        <!-- IntakeActivity -->
+        <activity android:name=".IntakeActivity" />
+
+        <!-- Splash screen MainActivity (the ONLY launcher) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">   <!-- ✅ required -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!-- DashboardActivity -->
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="true" />
+
+<!--         ScanOutActivity (to be implemented)-->
+        <activity
+            android:name=".ScanOutActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".FloorDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".gradedstock.ScanOutReworkActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".gradedstock.ScanOutWipActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ScanToBoxActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ScanToWipActivity"
+            android:exported="true" />
+
+
+        <activity
+            android:name=".ScanBackColdroomActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".NewIntakeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RejectionActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".WipScanActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".RejectActivity"
+            android:exported="true" />
+        <activity
+            android:name=".QualityAnalysisActivity"
+            android:exported="true" />
+
+        <activity android:name=".WrongScanActivity"
+            android:exported="true"/>
+
+        <activity android:name=".PriorityActivity"
+            android:exported="true"/>
+
+        <activity android:name=".ScanToQuarantineActivity"
+            android:exported="true"/>
+
+        <activity android:name=".ScanFromQuarantineActivity"
+            android:exported="true"/>
+
+        <activity android:name=".stocks.ScanActivity"
+            android:exported="true"/>
+
+        <activity android:name=".PriorityConfirmationActivity"
+            android:exported="true"/>
+
+        <activity android:name=".RejectionHistoryActivity"
+            android:exported="true"/>
+
+        <activity android:name=".RejectionReportsActivity"
+            android:exported="true"/>
+
+        <activity android:name=".gradedstock.GradedEntryActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".gradedstock.FarmSelectActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".boxfill.BoxFillActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".warehouse.WarehouseStockScanActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".boxfill.BoxConfirmActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ScanToDampActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ScanToSorageActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.SummersIntakeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.PackhouseVerifyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.SummersScanOutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.ScanBackSummerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.QuarantineManagementActivity"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".summers.EditVarietyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".summers.SummersDashboardActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".summers.SummersReportsActivity"
+            android:exported="false"/>
+
+        <activity android:name=".summers.PdfViewerActivity" />
+
+        <activity
+            android:name=".summers.PackhouseReportsActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".summers.RejectionsSummersActivity"
+            android:exported="false"/>
+
+    </application>
+</manifest>

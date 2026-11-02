@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEF2F7"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- HEADER -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:padding="20dp"
+            android:elevation="4dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dump Management"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:textColor="#1E3A5F"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload dump sheet before scanning"
+                android:textColor="#777777"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- DUMP CARD -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:elevation="4dp"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/dumpPreview"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:background="#DADADA"/>
+
+            <Button
+                android:id="@+id/btnCaptureDump"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Capture Dump Sheet"
+                android:textAllCaps="false"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+
+        <!-- SCAN CARD -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:elevation="4dp"
+            android:padding="20dp">
+
+            <EditText
+                android:id="@+id/qr_code_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Scan or enter QR code"
+                android:padding="14dp"
+                android:background="@android:drawable/edit_text"
+                android:singleLine="true"/>
+
+            <Button
+                android:id="@+id/scanBtnOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Open Camera Scanner"
+                android:textAllCaps="false"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+
+        <!-- LAST SCANS -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:elevation="4dp"
+            android:padding="20dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent Dump Scans"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#1E3A5F"
+                android:layout_marginBottom="12dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/scanoutTable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*"/>
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

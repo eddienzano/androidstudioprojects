@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.AAAGrowersScouting" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- App background -->
+        <item name="android:windowBackground">#F4F7F4</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">#173A2A</item>
+
+        <!-- Navigation bar -->
+        <item name="android:navigationBarColor">#F4F7F4</item>
+
+        <!-- Dark icons on navigation bar -->
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <!-- Light status bar icons -->
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Disable default action bar -->
+        <item name="windowActionModeOverlay">true</item>
+
+        <!-- Default font -->
+        <item name="android:fontFamily">sans</item>
+
+    </style>
+</resources>

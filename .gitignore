@@ -1,0 +1,47 @@
+
+# Android / Gradle build outputs
+**/build/
+**/.gradle/
+.gradle/
+
+# Android Studio local settings
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/usage.statistics.xml
+**/.idea/dictionaries/
+**/.idea/shelf/
+**/.idea/caches/
+local.properties
+
+# Generated Android packages
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Java / Kotlin generated files
+*.class
+.kotlin/
+
+# Local machine and operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Signing credentials and private configuration
+*.jks
+*.keystore
+key.properties
+secrets.properties
+
+# Environment files that may contain credentials
+.env
+.env.*
+
+# Do not ignore Gradle wrapper files:
+# gradlew, gradlew.bat, gradle/wrapper/*

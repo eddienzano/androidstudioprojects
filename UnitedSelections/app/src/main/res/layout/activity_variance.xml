@@ -1,0 +1,54 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#F5F7FA"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- TITLE -->
+    <TextView
+        android:text="Variance Dashboard"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#222"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- FILTER BAR -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btnFrom"
+            android:text="From"
+            android:layout_width="4dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"/>
+
+        <Button
+            android:id="@+id/btnTo"
+            android:text="To"
+            android:layout_width="4dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginStart="6dp"/>
+
+        <Button
+            android:id="@+id/btnFilter"
+            android:text="Apply"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="6dp"/>
+    </LinearLayout>
+
+    <!-- LIST -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerVariance"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

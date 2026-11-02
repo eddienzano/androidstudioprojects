@@ -1,0 +1,21 @@
+<resources>
+    <color name="bg">#F5F7FA</color>
+    <color name="card">#FFFFFF</color>
+
+    <color name="textPrimary">#222222</color>
+    <color name="textSecondary">#777777</color>
+
+    <color name="primary">#2E7D32</color>
+    <color name="primaryDark">#1B5E20</color>
+    <color name="onPrimary">#FFFFFF</color>
+
+    <color name="green_500">#4CAF50</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="red_500">#F44336</color>
+    <color name="black">#000000</color>
+
+    <color name="textLight">#FFFFFF</color>
+    <color name="textMuted">#B8C7D9</color>
+    <color name="glassWhite">#22FFFFFF</color>
+</resources>

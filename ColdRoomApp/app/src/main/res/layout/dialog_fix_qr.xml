@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/inputFarm"
+        android:hint="Farm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/inputVariety"
+        android:hint="Search Variety"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/inputQty"
+        android:hint="Quantity"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- 🔥 ADD BUTTON TO ADD MULTIPLE ITEMS -->
+    <Button
+        android:id="@+id/btnAddVariety"
+        android:text="Add Variety"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
+    <!-- 🔥 PREVIEW LIST -->
+    <TextView
+        android:id="@+id/tvFixList"
+        android:text="No items added yet"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EEEEEE"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F8F5"
+    android:fillViewport="true"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="36dp">
+
+
+        <!-- ========================================================= -->
+        <!-- HEADER -->
+        <!-- ========================================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#173326"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="22dp">
+
+
+            <!-- TOP BAR -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <!-- BACK -->
+
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Back"
+                    android:padding="10dp"
+                    android:src="@android:drawable/ic_media_previous"
+                    app:tint="#FFFFFF" />
+
+
+                <!-- TITLE -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TRAP OBSERVATION"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.04" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="FIELD MONITORING"
+                        android:textColor="#A9C7B4"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.15" />
+
+                </LinearLayout>
+
+
+                <!-- LIVE STATUS -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_trap_status"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp">
+
+                    <View
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:background="@drawable/bg_status_dot" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:text="ACTIVE"
+                        android:textColor="#D9F3E2"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- HEADER DESCRIPTION -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="16dp"
+                android:text="Record today's pest pressure from this monitoring point."
+                android:textColor="#D5E4DA"
+                android:textSize="12sp"
+                android:lineSpacingExtra="2dp" />
+
+        </LinearLayout>
+
+
+        <!-- ========================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ========================================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="18dp">
+
+
+            <!-- ===================================================== -->
+            <!-- TRAP IDENTITY CARD -->
+            <!-- ===================================================== -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_trap_info_card"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+
+                <!-- SMALL LABEL -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MONITORING POINT"
+                    android:textColor="#789080"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.14" />
+
+
+                <!-- TRAP CODE -->
+
+                <TextView
+                    android:id="@+id/trapCodeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="FCM-001"
+                    android:textColor="#173326"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+                <!-- TYPE + LOCATION -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+
+                    <!-- TYPE -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TRAP TYPE"
+                            android:textColor="#8A988F"
+                            android:textSize="8sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.10" />
+
+                        <TextView
+                            android:id="@+id/trapTypeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="FCM TRAP"
+                            android:textColor="#315B43"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                    <!-- LOCATION -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LOCATION"
+                            android:textColor="#8A988F"
+                            android:textSize="8sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.10" />
+
+                        <TextView
+                            android:id="@+id/trapLocationText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Bay 12"
+                            android:textColor="#315B43"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!-- OBSERVATION MODE -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_trap_status_light"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="10dp">
+
+                    <View
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:background="@drawable/bg_status_dot" />
+
+                    <TextView
+                        android:id="@+id/observationModeText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="9dp"
+                        android:layout_weight="1"
+                        android:text="FCM MOTH COUNT"
+                        android:textColor="#315B43"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TODAY"
+                        android:textColor="#829188"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- OBSERVATION -->
+            <!-- ===================================================== -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="OBSERVATION"
+                android:textColor="#789080"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15" />
+
+
+            <!-- ===================================================== -->
+            <!-- GENERAL MOTH — INSECT TYPE -->
+            <!-- ===================================================== -->
+
+            <LinearLayout
+                android:id="@+id/insectTypeSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_trap_info_card"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INSECT TYPE"
+                    android:textColor="#789080"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12" />
+
+
+                <AutoCompleteTextView
+                    android:id="@+id/insectTypeInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/bg_trap_input"
+                    android:hint="Select insect type"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textColor="#173326"
+                    android:textColorHint="#9AA69F"
+                    android:textSize="13sp"
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:completionThreshold="0" />
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- MOTH COUNT CARD -->
+            <!-- ===================================================== -->
+
+            <LinearLayout
+                android:id="@+id/mothCountSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_trap_count_card"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+
+                <TextView
+                    android:id="@+id/countLabelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MOTH COUNT"
+                    android:textColor="#789080"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.14" />
+
+
+                <TextView
+                    android:id="@+id/countHelperText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Enter the number of moths observed in the trap."
+                    android:textColor="#87948B"
+                    android:textSize="10sp" />
+
+
+                <!-- COUNTER -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <!-- DECREASE -->
+
+                    <ImageButton
+                        android:id="@+id/decreaseCountButton"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
+                        android:background="@drawable/bg_trap_counter_button"
+                        android:contentDescription="Decrease count"
+                        android:src="@android:drawable/ic_media_previous"
+                        android:padding="17dp"
+                        app:tint="#315B43" />
+
+
+                    <!-- COUNT -->
+
+                    <TextView
+                        android:id="@+id/mothCountText"
+                        android:layout_width="100dp"
+                        android:layout_height="72dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#173326"
+                        android:textSize="42sp"
+                        android:textStyle="bold" />
+
+
+                    <!-- INCREASE -->
+
+                    <ImageButton
+                        android:id="@+id/increaseCountButton"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
+                        android:background="@drawable/bg_trap_counter_button"
+                        android:contentDescription="Increase count"
+                        android:src="@android:drawable/ic_media_next"
+                        android:padding="17dp"
+                        app:tint="#315B43" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- TREND -->
+            <!-- ===================================================== -->
+
+            <LinearLayout
+                android:id="@+id/trendSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_trap_info_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TREND"
+                    android:textColor="#789080"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.14" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="How does today's activity compare with the previous observation?"
+                    android:textColor="#87948B"
+                    android:textSize="10sp" />
+
+
+                <!-- TREND OPTIONS -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+
+                    <!-- DECREASING -->
+
+                    <TextView
+                        android:id="@+id/trendDecreasingButton"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_trap_trend_button"
+                        android:gravity="center"
+                        android:text="↓  DECREASING"
+                        android:textColor="#52695A"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.04" />
+
+
+                    <!-- STABLE -->
+
+                    <TextView
+                        android:id="@+id/trendStableButton"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_trap_trend_button"
+                        android:gravity="center"
+                        android:text="→  STABLE"
+                        android:textColor="#52695A"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.04" />
+
+
+                    <!-- INCREASING -->
+
+                    <TextView
+                        android:id="@+id/trendIncreasingButton"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_trap_trend_button"
+                        android:gravity="center"
+                        android:text="↑  INCREASING"
+                        android:textColor="#52695A"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.02" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- COMMENTS -->
+            <!-- ===================================================== -->
+
+            <LinearLayout
+                android:id="@+id/commentsSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_trap_info_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="COMMENTS"
+                    android:textColor="#789080"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.14" />
+
+
+                <EditText
+                    android:id="@+id/commentsInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/bg_trap_input"
+                    android:gravity="top|start"
+                    android:hint="Add observation notes..."
+                    android:padding="14dp"
+                    android:textColor="#173326"
+                    android:textColorHint="#9AA69F"
+                    android:textSize="12sp"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLines="5" />
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- FIELD CAPTURE -->
+            <!-- ===================================================== -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="FIELD CAPTURE"
+                android:textColor="#789080"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15" />
+
+
+            <!-- PHOTO + GPS -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <!-- PHOTO -->
+
+                <LinearLayout
+                    android:id="@+id/photoCard"
+                    android:layout_width="0dp"
+                    android:layout_height="105dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_trap_capture_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/photoIconText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="▣"
+                        android:textColor="#315B43"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/photoStatusText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="TAKE PHOTO"
+                        android:textColor="#315B43"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                </LinearLayout>
+
+
+                <!-- GPS -->
+
+                <LinearLayout
+                    android:id="@+id/gpsCard"
+                    android:layout_width="0dp"
+                    android:layout_height="105dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_trap_capture_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/gpsIconText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⌖"
+                        android:textColor="#315B43"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/gpsStatusText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="GPS LOCATION"
+                        android:textColor="#315B43"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- OBSERVATION TIMESTAMP -->
+            <!-- ===================================================== -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_trap_info_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="15dp"
+                android:paddingTop="13dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="13dp">
+
+                <View
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:background="@drawable/bg_status_dot" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_weight="1"
+                    android:text="OBSERVATION TIME"
+                    android:textColor="#789080"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.10" />
+
+                <TextView
+                    android:id="@+id/observationTimeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Captured when saved"
+                    android:textColor="#52695A"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <!-- ===================================================== -->
+            <!-- SAVE -->
+            <!-- ===================================================== -->
+
+            <Button
+                android:id="@+id/saveObservationButton"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_trap_primary_button"
+                android:stateListAnimator="@null"
+                android:text="SAVE OBSERVATION     →"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05" />
+
+
+            <!-- ===================================================== -->
+            <!-- OFFLINE NOTE -->
+            <!-- ===================================================== -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="Observation will be saved securely on this device and queued for synchronisation."
+                android:textColor="#87948B"
+                android:textSize="9sp"
+                android:lineSpacingExtra="2dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+

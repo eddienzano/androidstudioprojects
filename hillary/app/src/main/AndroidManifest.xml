@@ -1,0 +1,83 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Hillary">
+
+        <!-- Foreground Service MUST be here -->
+        <service
+            android:name=".transporter.service.TransporterLocationService"
+            android:foregroundServiceType="location"
+            android:exported="false"
+            tools:ignore="ForegroundServicePermission" />
+
+        <receiver
+            android:name=".transporter.service.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+
+        </receiver>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAVBR66NnefbbKhYa0mzzMzR0xUcAOPYfk"/>
+
+        <!-- Activities -->
+        <activity android:name=".LandingActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".customer.MarketplaceActivity"/>
+        <activity android:name=".auth.OtpVerificationActivity"/>
+        <activity android:name=".Dashboard.DashboardActivity"/>
+        <activity android:name=".supplier.SupplierProfileActivity"/>
+        <activity android:name=".products.CreateProductActivity"/>
+        <activity android:name=".products.MyProductsActivity"/>
+        <activity android:name=".supplier.EditSupplierActivity"/>
+        <activity android:name=".supplier.SupplierOrdersActivity"/>
+        <activity android:name=".supplier.SupplierOrderDetailsActivity"/>
+        <activity android:name=".products.EditProductActivity"/>
+        <activity android:name=".products.ProductDetailsActivity"/>
+        <activity android:name=".products.inventory.InventoryActivity"/>
+        <activity android:name=".products.inventory.InventoryLogsActivity"/>
+        <activity android:name=".products.inventory.InventoryDashboardActivity"/>
+        <activity android:name=".products.inventory.InventoryDetailsActivity"/>
+        <activity android:name=".auth.LoginActivity"/>
+        <activity android:name=".customer.ProductDetailsActivity"/>
+        <activity android:name=".customer.CustomerRegisterActivity"/>
+        <activity android:name=".customer.CustomerLoginActivity"/>
+        <activity android:name=".customer.CartActivity"/>
+        <activity android:name=".customer.CheckoutActivity"/>
+        <activity android:name=".customer.OrdersActivity"/>
+        <activity android:name=".customer.OrderDetailsActivity"/>
+        <activity android:name=".customer.CustomerProfileActivity"/>
+        <activity android:name=".customer.MapPickerActivity"/>
+        <activity android:name=".transporter.TransporterLoginActivity"/>
+        <activity android:name=".transporter.TransporterDashboardActivity"/>
+
+    </application>
+
+</manifest>

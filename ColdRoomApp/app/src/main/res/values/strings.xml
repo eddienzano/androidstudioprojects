@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cold Room App</string>
+    <string name="bucket_scan_out" />
+    <string name="scan_or_enter_qr_code" />
+    <string name="open_camera_scanner_out" />
+    <string name="last_10_scan_outs" />
+</resources>

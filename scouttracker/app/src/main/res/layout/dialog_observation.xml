@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- HEADER -->
+        <TextView
+            android:text="New Observation"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- GREENHOUSE -->
+        <EditText
+            android:id="@+id/etGreenhouse"
+            android:hint="Greenhouse"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"/>
+
+        <!-- BAY -->
+        <EditText
+            android:id="@+id/etBay"
+            android:hint="Bay"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"/>
+
+        <!-- ISSUE BLOCK -->
+        <TextView
+            android:text="Select Issues"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- ROW -->
+        <CheckBox
+            android:id="@+id/chkThrips"
+            android:text="Thrips"
+            android:layout_height="50dp"
+            android:layout_width="300dp"/>
+        <EditText android:id="@+id/etThrips"
+            android:hint="Notes"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/chkMites"
+            android:text="Mites"
+            android:layout_height="50dp"
+            android:layout_width="300dp"/>
+
+        <EditText android:id="@+id/etMites"
+            android:hint="Notes"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/chkDowny"
+            android:text="Downy"
+            android:layout_height="50dp"
+            android:layout_width="300dp"/>
+
+        <EditText android:id="@+id/etDowny" android:hint="Notes"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/chkPowdery"
+            android:text="Powdery"
+            android:layout_height="50dp"
+            android:layout_width="300dp"/>
+
+        <EditText android:id="@+id/etPowdery" android:hint="Notes"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/chkOther"
+            android:text="Other"
+            android:layout_height="50dp"
+            android:layout_width="300dp"/>
+
+        <EditText android:id="@+id/etOther"
+            android:hint="Notes"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</ScrollView>

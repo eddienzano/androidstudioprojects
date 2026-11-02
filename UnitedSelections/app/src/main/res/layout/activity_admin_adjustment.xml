@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6F9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- HEADER -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harvest Adjustment"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:textColor="#1B4332"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit quantities or add missing varieties"
+                android:textColor="#666"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- QR CARD -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="18dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harvest QR"
+                android:textStyle="bold"
+                android:textColor="#1B4332"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/qrInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Scan or Enter QR"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#2D6A4F"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="14dp">
+
+                <Button
+                    android:id="@+id/btnScanQR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Scan QR"
+                    android:backgroundTint="#1D3557"/>
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/btnFetch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fetch"
+                    android:backgroundTint="#2D6A4F"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- INFO CARD -->
+
+        <LinearLayout
+            android:id="@+id/infoCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:background="#FFFFFF"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/txtGreenhouse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Greenhouse"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#1B4332"/>
+
+            <TextView
+                android:id="@+id/txtVerified"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verified"
+                android:textColor="#555"
+                android:textSize="15sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- ADD VARIETY -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="18dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Variety"
+                android:textStyle="bold"
+                android:textColor="#1B4332"
+                android:textSize="16sp"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/variety"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select Variety"
+                android:layout_marginTop="12dp"/>
+
+            <EditText
+                android:id="@+id/qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quantity"
+                android:inputType="number"
+                android:layout_marginTop="12dp"/>
+
+            <EditText
+                android:id="@+id/reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Reason for adjustment"
+                android:layout_marginTop="12dp"/>
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Variety"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#40916C"/>
+        </LinearLayout>
+
+        <!-- CURRENT VARIETIES -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current QR Varieties"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#1B4332"
+            android:layout_marginTop="20dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- SAVE -->
+
+        <Button
+            android:id="@+id/btnSaveAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save All Adjustments"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#1B4332"/>
+
+    </LinearLayout>
+
+</ScrollView>
